@@ -264,6 +264,257 @@ $$
 - Ensures transversality with regard to centered derivative: $\nabla_\mu^c\pi^T_\mu(\vec{x})=0$
 - Energy is conserved up to finite lattice spacing corrections
 
+# Numerical Methods for Field Evolution
+
+---
+
+## Third-order Runge-Kutta Method (RK3)
+### For Advection Terms
+
+- We define a four-component field $\phi_\mu = (\phi, \vec{\pi}^T)$
+- Evolution equation: $\dot{\phi}_\mu = \mathcal{F}_\mu (\phi_\nu)$
+
+---
+
+## RK3 Integration Scheme (Shu & Osher)
+
+1. First step:
+   $\phi^{n+1/3}_\mu = \phi^n_\mu + \Delta t \, \mathcal{F}_\mu (\phi^n_\nu)$
+
+2. Second step:
+   $\phi^{n+2/3}_\mu = \frac{3}{4} \, \phi^n_\mu + \frac{1}{4} \, \phi^{n+1/3}_\mu + \frac{\Delta t}{4} \, \mathcal{F}_\mu(\phi^{n+1/3}_\nu)$
+
+3. Third step:
+   $\phi^{n+1}_\mu = \frac{1}{3} \, \phi^{n}_\mu + \frac{2}{3} \, \phi^{n+2/3}_\mu + \frac{2}{3} \, \Delta t \, \mathcal{F}_\mu(\phi^{n+2/3}_\nu)$
+
+- Transverse projector applied after each substep
+
+---
+
+## Dissipative Update: Metropolis Algorithm
+
+**Key Insight**:
+- Diffusive step and noise term implemented via a single Metropolis update
+- First moment → diffusive step
+- Second moment → noise term
+- Guarantees fluctuation-dissipation relations
+- Converges to equilibrium distribution: $P[\phi_\mu]\sim \exp(-\mathcal{H}[\phi_\mu]/T)$
+
+---
+
+## Metropolis Update for Scalar Field $\phi$
+
+Trial update:
+- $\phi^{\text{trial}}(\vec{x},t+\Delta t) = \phi(\vec{x},t) + q_\mu$
+- $\phi^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \phi(\vec{x}+\hat{\mu},t) - q_\mu$
+- $q_\mu = \sqrt{2\Gamma T(\Delta t)}\, \xi$
+
+Where:
+- $\xi$ is a Gaussian random variable with unit variance
+- $\hat{\mu}$ is an elementary lattice vector
+
+Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
+
+---
+
+## Metropolis Update for Momentum Density $\vec{\pi}$
+
+Trial update:
+- $\pi_\nu^{\text{trial}}(\vec{x},t+\Delta t) = \pi_\nu(\vec{x},t) + r_{\nu}^{(\mu)}$
+- $\pi_\nu^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \pi_\nu(\vec{x}+\hat{\mu},t) - r_{\nu}^{(\mu)}$
+- $r_{\nu}^{(\mu)} = \sqrt{2\eta T (\Delta t)}\, \zeta_{\nu}^{(\mu)}$
+
+Where:
+- $\zeta_\nu^{(\mu)}$ are Gaussian random variables with $\langle \zeta_\mu^{(\alpha)}\zeta_\nu^{(\beta)}\rangle = \delta_{\mu\nu}\delta^{\alpha\beta}$
+
+Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
+
+---
+
+## Transverse Projection
+
+- After a complete sweep, project onto transverse component:
+  $\pi_\mu^T (\vec{x},t) = P^T_{\mu\nu} \pi_\nu(\vec{x})$
+- Projection carried out in Fourier space
+- Ensures $(d-1)$ fluctuating degrees of freedom for momentum density
+- Average energy per mode equals $\frac{d-1}{2}T$ rather than $\frac{d}{2}T$
+
+---
+
+## Calculating Energy Changes for Metropolis Steps
+
+For scalar field change at point $\vec{x}$:
+
+$\Delta \mathcal{H}_\phi(\vec{x}) = d[({\phi^{\text{trial}}(\vec{x})})^2 - ({\phi(\vec{x})})^2] - (\phi^{\text{trial}}(\vec{x}) - \phi(\vec{x}))\sum_{\mu=1}^d [\phi(\vec{x}+\hat{\mu}) + \phi(\vec{x}-\hat{\mu})] + \frac{1}{2}m^2[({\phi^{\text{trial}}(\vec{x})})^2 - ({\phi(\vec{x})})^2] + \frac{1}{4}\lambda[({\phi^{\text{trial}}(\vec{x})})^4 - ({\phi(\vec{x})})^4]$
+
+---
+
+## Energy Changes (continued)
+
+For conserving update (transferring charge $q_\mu$ from $\vec{x}+\hat{\mu}$ to $\vec{x}$):
+
+$\Delta \mathcal{H}_\phi (\vec{x}, \vec{x}+\hat \mu) = \Delta \mathcal{H}_\phi(\vec{x}) + \Delta \mathcal{H}_\phi (\vec{x}+\hat \mu) + (q_\mu)^2$
+
+For momentum transfer:
+
+$\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\mu)}(\pi^T_\nu(\vec{x})-\pi^T_\nu(\vec{x}+\hat{\mu})) + (r_{\nu}^{(\mu)})^2]$
+
+---
+
+## Implementation Notes
+
+- Metropolis updates performed on a checkerboard pattern
+- Timestep for dissipative update can differ from Runge-Kutta timestep
+- Transverse projection operator applied after complete lattice sweep
+
+
+# Theoretical Expectations for Model H
+
+---
+
+## Static Behavior
+
+- Governed by partition function: $Z = \int D\phi\, D\vec\pi^T\, \exp\left(-\frac{\mathcal{H}}{T}\right)$
+- No coupling between scalar field $\phi$ and momentum density $\vec\pi^T$ in Hamiltonian
+- Momentum density correlation: 
+  $\langle \pi^T_i(0,\vec{x})\pi^T_j(0,\vec{x}^{\,\prime})\rangle = T\rho\, P^T_{ij}\delta^3(\vec{x}-\vec{x}^{\,\prime})$
+- Spectral density independent of $\vec{k}$ (classical equidistribution)
+
+---
+
+## Critical Behavior of Scalar Field
+
+- Scalar field $\phi$ in Ising model universality class
+- At critical point ($m^2 = m_c^2$), two-point function:
+  $\langle \phi(0,\vec{x})\phi(0,\vec{x}^{\,\prime})\rangle \sim |\vec{x}-\vec{x}^{\,\prime}|^{-d+2-\eta^*}$
+  
+  where $\eta^* \simeq 0.0363$ in 3D
+
+- Away from critical point, correlation length:
+  $\xi \sim |m^2-m_c^2|^{-\nu}$ with $\nu \simeq 0.62999(5)$ in 3D
+
+---
+
+## Susceptibility
+
+- Defined as integral of two-point function:
+  $\chi = \int d^dx\, \langle \phi(0,\vec{0})\phi(0,\vec{x})\rangle$
+  
+- Critical scaling: $\chi \sim |m^2-m_c^2|^{-\gamma}$ with $\gamma=\nu(2-\eta)$
+
+- Small value of $\eta^*$ means susceptibility close to mean field prediction $\chi\sim\xi^2$
+
+- Two-point function in momentum space approximately follows Ornstein-Zernike form:
+  $\langle \phi(0,\vec{k})\phi(0,-\vec{k})\rangle \sim \xi^2/(1+(k\xi)^2)$
+
+---
+
+## Dynamics: Momentum Density
+
+- Transverse momentum correlation function:
+  $C_{ij}(t,\vec{k}) = \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$
+  
+- Transversality implies $C_{ij}(t,\vec{k})= (\delta_{ij}-\hat{k}_i\hat{k}_j) C_\pi(t,k)$
+
+- In linearized hydrodynamics (shear mode):
+  $C_\pi(t,k) = \rho T\, \exp\left(-(\eta/\rho)k^2t\right)$
+
+---
+
+## Renormalization of Viscosity
+
+- Self-advection of momentum density (shear modes) renormalizes viscosity:
+  $\eta_R = \eta + \frac{7}{60\pi^2} \frac{\rho T\Lambda}{\eta}$
+  
+  where $\Lambda \simeq \pi/a$ is momentum-space cutoff
+
+- Minimum renormalized viscosity:
+  $\left.\eta_R\right|_{\text{min}} = \sqrt{\frac{7}{15\pi}}\, \sqrt{\frac{\rho T}{a}}$
+  
+- In units where $T=a=1$: $\eta_R|_{\text{min}} \simeq 0.39\sqrt{\rho}$
+
+---
+
+## Additional Renormalization Effects
+
+- Coupling to scalar field also renormalizes viscosity:
+  $\eta_{R} = \eta + \frac{1}{160\pi} \frac{T\xi^0}{\Gamma}$
+  
+  (much smaller correction than self-advection for typical parameters)
+
+- Long-time behavior modified by non-linear effects:
+  - Long time tail scales as $t^{-3/2}\exp(-D_\eta k^2t/2)$
+  - In non-perturbative regime: $C_\pi \sim \exp(-\sqrt{\alpha D_\eta k^2 t})$
+
+---
+
+## Order Parameter Dynamics
+
+- Order parameter correlation function:
+  $C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle$
+  
+- Wave-number dependent relaxation rate:
+  $\Gamma_k = \frac{\Gamma}{\xi^4}(k\xi)^2(1+(k\xi)^2) + \frac{T}{6\pi\eta_R\xi^3}\, K(k\xi)$
+  
+  where $K(x)$ is the Kawasaki function
+
+---
+
+## Kawasaki Function
+
+- $K(x) = \frac{3}{4}[1+x^2+(x^3-x^{-1})\tan^{-1}(x)]$
+  
+- Asymptotic behavior:
+  - $K(x) \simeq x^2$ for $x \ll 1$
+  - $K(x) \simeq (3\pi/8)x^3$ for $x \gg 1$
+
+- First term in $\Gamma_k$: mean field relaxation rate (model B)
+- Second term: coupling to fluid momentum density
+
+---
+
+## Dynamical Critical Exponent
+
+- Model B: $z = 4$ (mean field), $z = 4-\eta$ (with fluctuations)
+  
+- Model H (with momentum coupling): $z \simeq 3$
+  
+  - $\epsilon$-expansion at two loops: $z \simeq 3.0712$
+  - Kawasaki approximation: wave number dependence $\Gamma_k \sim k^2$ (small $k\xi$), $\Gamma_k \sim k^3$ (large $k\xi$)
+
+---
+
+## Critical Viscosity
+
+- Viscosity diverges at critical point:
+  $\eta_R = \eta[1 + \frac{8}{15\pi^2}\log(\xi/\xi_0)]$
+  
+- Scaling: $\eta_R \sim \xi^{x_\eta}$ with $x_\eta = \frac{8}{15\pi^2} \simeq 0.054$
+  
+- $\epsilon$-expansion (two loops): $x_\eta \simeq 0.071$
+  
+- Divergence is weak, Kawasaki approximation remains approximately self-consistent
+
+---
+
+## Physical Argument for z ≈ 3
+
+1. Define renormalized conductivity $\Gamma_R$ by $\Gamma_k = \Gamma_R\chi^{-1}k^2$ (for $k\xi < 1$)
+   
+2. Critical scaling: $\Gamma_R \sim \xi^{x_\Gamma}$ (Kawasaki: $x_\Gamma = 1$)
+   
+3. Balance of diffusion and convection in external field gives:
+   $x_\Gamma + x_\eta = 4-d-\eta^*$
+   
+4. For small $x_\eta$ and $\eta^*$ in 3D: $x_\Gamma \simeq 1$
+   
+5. Matching relaxation rates: $z = 4-x_\Gamma-\eta$
+   
+6. Result: $z = d+x_\eta \simeq d = 3$ for small $x_\eta$
+
+
+
+
 ---
 
 <img src="img/binder_reweight.pdf.png" alt="binder_reweight.pdf.png">
