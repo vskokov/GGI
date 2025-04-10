@@ -20,7 +20,43 @@
 
 ---
 
-###
+### Fluctuations
+
+---
+
+### Hohenberg and Halperin classification
+
+Stochastic theories near critical point:
+
+- Model A: purely relaxational theories
+
+- Model B: critical diffusion
+
+- ...
+
+- <span style="color:  #ff6b35;"> _Model G_ </span>: critical anti-ferromagnets
+
+- <span style="color:  #ff6b35;"> _Model H_ </span>: critical diffusion coupled to Navier-Stokes
+
+---
+
+### Dynamical critical exponent
+
+TODO: definition
+
+- $\epsilon=4-d$ expansion; $\epsilon$ is not small for physically interesting case of $d=3$
+
+- FRG: LPA and LPA' approximations currently
+
+- Our choice: direct simulation of stochastic hydrodynamics
+
+---
+
+### Model H: definition
+
+- Long-time hydrodynamic description of conserved $\phi$ interacting with the conserve momentum density $\vec{\pi}$
+
+<div class="smallmath">
 
 $$
 \partial_t\phi =   \Gamma \nabla^2 \left(\frac{\delta{\cal H}}{\delta \phi}\right) - \left(\nabla_i\phi\right) \frac{\delta{\cal H}}{\delta \pi_i^T} \zeta
@@ -30,10 +66,21 @@ $$
 \partial_t \pi^T_i = \eta \nabla^2 \left(\frac{\delta{\cal H}}{\delta \pi^T_i}\right) + P^T_{ij} \left[\left(\nabla_j\phi\right) \frac{\delta{\cal H}} {\delta\phi} \right] - P^T\_{ij} \left[ \nabla_k\left( \pi^{T}_j \frac{\delta{\cal H}}{\delta \pi^T_k}\right) \right] + \xi_i .
 $$
 
+</div>
+
+- $\Gamma$ and $\eta$ are thermal conductivity and shear viscosity
+
+- The effective Hamiltonian defines statics of the model
+
+<div class="smallmath">
 $$
 {\cal H}  = \int d^dx \left[ \frac{1}{2\rho} ( \pi_i^T)^2 +  \frac{1}{2} (\nabla \phi)^2 +  \frac{1}{2} m^2 \phi^2 +  \frac{1}{4} \lambda  \phi^4  + h \phi\right]
 $$
+</div>
 
+- $\zeta$ and $\xi_i$ are random fields constrained by fluctuation-dissipation relations
+
+<div class="smallmath">
 $$
 \langle \zeta (t, \vec{x}) \zeta (t', \vec{x}') \rangle = -2 T \Gamma \nabla^2 \delta(\vec{x}-\vec{x}')\delta(t-t')
 $$
@@ -41,6 +88,8 @@ $$
 $$
 \langle \xi_i (t, \vec{x}) \xi_j (t', \vec{x}') \rangle = -2 T \eta P^T_{ij} \nabla^2 \delta(\vec{x}-\vec{x}')\delta(t-t')
 $$
+
+</div>
 
 ---
 
@@ -269,6 +318,7 @@ $$
 ---
 
 ## Third-order Runge-Kutta Method (RK3)
+
 ### For Advection Terms
 
 - We define a four-component field $\phi_\mu = (\phi, \vec{\pi}^T)$
@@ -294,6 +344,7 @@ $$
 ## Dissipative Update: Metropolis Algorithm
 
 **Key Insight**:
+
 - Diffusive step and noise term implemented via a single Metropolis update
 - First moment → diffusive step
 - Second moment → noise term
@@ -305,11 +356,13 @@ $$
 ## Metropolis Update for Scalar Field $\phi$
 
 Trial update:
+
 - $\phi^{\text{trial}}(\vec{x},t+\Delta t) = \phi(\vec{x},t) + q_\mu$
 - $\phi^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \phi(\vec{x}+\hat{\mu},t) - q_\mu$
 - $q_\mu = \sqrt{2\Gamma T(\Delta t)}\, \xi$
 
 Where:
+
 - $\xi$ is a Gaussian random variable with unit variance
 - $\hat{\mu}$ is an elementary lattice vector
 
@@ -320,11 +373,13 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 ## Metropolis Update for Momentum Density $\vec{\pi}$
 
 Trial update:
+
 - $\pi_\nu^{\text{trial}}(\vec{x},t+\Delta t) = \pi_\nu(\vec{x},t) + r_{\nu}^{(\mu)}$
 - $\pi_\nu^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \pi_\nu(\vec{x}+\hat{\mu},t) - r_{\nu}^{(\mu)}$
 - $r_{\nu}^{(\mu)} = \sqrt{2\eta T (\Delta t)}\, \zeta_{\nu}^{(\mu)}$
 
 Where:
+
 - $\zeta_\nu^{(\mu)}$ are Gaussian random variables with $\langle \zeta_\mu^{(\alpha)}\zeta_\nu^{(\beta)}\rangle = \delta_{\mu\nu}\delta^{\alpha\beta}$
 
 Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
@@ -367,7 +422,6 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 - Timestep for dissipative update can differ from Runge-Kutta timestep
 - Transverse projection operator applied after complete lattice sweep
 
-
 # Theoretical Expectations for Model H
 
 ---
@@ -376,7 +430,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Governed by partition function: $Z = \int D\phi\, D\vec\pi^T\, \exp\left(-\frac{\mathcal{H}}{T}\right)$
 - No coupling between scalar field $\phi$ and momentum density $\vec\pi^T$ in Hamiltonian
-- Momentum density correlation: 
+- Momentum density correlation:
   $\langle \pi^T_i(0,\vec{x})\pi^T_j(0,\vec{x}^{\,\prime})\rangle = T\rho\, P^T_{ij}\delta^3(\vec{x}-\vec{x}^{\,\prime})$
 - Spectral density independent of $\vec{k}$ (classical equidistribution)
 
@@ -387,7 +441,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 - Scalar field $\phi$ in Ising model universality class
 - At critical point ($m^2 = m_c^2$), two-point function:
   $\langle \phi(0,\vec{x})\phi(0,\vec{x}^{\,\prime})\rangle \sim |\vec{x}-\vec{x}^{\,\prime}|^{-d+2-\eta^*}$
-  
+
   where $\eta^* \simeq 0.0363$ in 3D
 
 - Away from critical point, correlation length:
@@ -399,7 +453,6 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Defined as integral of two-point function:
   $\chi = \int d^dx\, \langle \phi(0,\vec{0})\phi(0,\vec{x})\rangle$
-  
 - Critical scaling: $\chi \sim |m^2-m_c^2|^{-\gamma}$ with $\gamma=\nu(2-\eta)$
 
 - Small value of $\eta^*$ means susceptibility close to mean field prediction $\chi\sim\xi^2$
@@ -413,7 +466,6 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Transverse momentum correlation function:
   $C_{ij}(t,\vec{k}) = \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$
-  
 - Transversality implies $C_{ij}(t,\vec{k})= (\delta_{ij}-\hat{k}_i\hat{k}_j) C_\pi(t,k)$
 
 - In linearized hydrodynamics (shear mode):
@@ -425,12 +477,11 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Self-advection of momentum density (shear modes) renormalizes viscosity:
   $\eta_R = \eta + \frac{7}{60\pi^2} \frac{\rho T\Lambda}{\eta}$
-  
+
   where $\Lambda \simeq \pi/a$ is momentum-space cutoff
 
 - Minimum renormalized viscosity:
   $\left.\eta_R\right|_{\text{min}} = \sqrt{\frac{7}{15\pi}}\, \sqrt{\frac{\rho T}{a}}$
-  
 - In units where $T=a=1$: $\eta_R|_{\text{min}} \simeq 0.39\sqrt{\rho}$
 
 ---
@@ -439,7 +490,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Coupling to scalar field also renormalizes viscosity:
   $\eta_{R} = \eta + \frac{1}{160\pi} \frac{T\xi^0}{\Gamma}$
-  
+
   (much smaller correction than self-advection for typical parameters)
 
 - Long-time behavior modified by non-linear effects:
@@ -452,10 +503,9 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Order parameter correlation function:
   $C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle$
-  
 - Wave-number dependent relaxation rate:
   $\Gamma_k = \frac{\Gamma}{\xi^4}(k\xi)^2(1+(k\xi)^2) + \frac{T}{6\pi\eta_R\xi^3}\, K(k\xi)$
-  
+
   where $K(x)$ is the Kawasaki function
 
 ---
@@ -463,8 +513,8 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 ## Kawasaki Function
 
 - $K(x) = \frac{3}{4}[1+x^2+(x^3-x^{-1})\tan^{-1}(x)]$
-  
 - Asymptotic behavior:
+
   - $K(x) \simeq x^2$ for $x \ll 1$
   - $K(x) \simeq (3\pi/8)x^3$ for $x \gg 1$
 
@@ -476,9 +526,8 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 ## Dynamical Critical Exponent
 
 - Model B: $z = 4$ (mean field), $z = 4-\eta$ (with fluctuations)
-  
 - Model H (with momentum coupling): $z \simeq 3$
-  
+
   - $\epsilon$-expansion at two loops: $z \simeq 3.0712$
   - Kawasaki approximation: wave number dependence $\Gamma_k \sim k^2$ (small $k\xi$), $\Gamma_k \sim k^3$ (large $k\xi$)
 
@@ -488,11 +537,8 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Viscosity diverges at critical point:
   $\eta_R = \eta[1 + \frac{8}{15\pi^2}\log(\xi/\xi_0)]$
-  
 - Scaling: $\eta_R \sim \xi^{x_\eta}$ with $x_\eta = \frac{8}{15\pi^2} \simeq 0.054$
-  
 - $\epsilon$-expansion (two loops): $x_\eta \simeq 0.071$
-  
 - Divergence is weak, Kawasaki approximation remains approximately self-consistent
 
 ---
@@ -500,20 +546,12 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 ## Physical Argument for z ≈ 3
 
 1. Define renormalized conductivity $\Gamma_R$ by $\Gamma_k = \Gamma_R\chi^{-1}k^2$ (for $k\xi < 1$)
-   
 2. Critical scaling: $\Gamma_R \sim \xi^{x_\Gamma}$ (Kawasaki: $x_\Gamma = 1$)
-   
 3. Balance of diffusion and convection in external field gives:
    $x_\Gamma + x_\eta = 4-d-\eta^*$
-   
 4. For small $x_\eta$ and $\eta^*$ in 3D: $x_\Gamma \simeq 1$
-   
 5. Matching relaxation rates: $z = 4-x_\Gamma-\eta$
-   
 6. Result: $z = d+x_\eta \simeq d = 3$ for small $x_\eta$
-
-
-
 
 ---
 
