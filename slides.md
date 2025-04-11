@@ -260,7 +260,7 @@ $$
 
 ---
 
-## Challenges in Discrete Theory
+### Challenges in Discrete Theory
 
 - Vector identities from continuum may not hold in discretized theory
 - Integration by parts identities may fail
@@ -268,7 +268,7 @@ $$
 
 ---
 
-## Skew-Symmetric Form
+### Skew-Symmetric Form
 
 From Morinishi et al., the "skew-symmetric" form:
 
@@ -280,7 +280,7 @@ $$
 
 ---
 
-## Lattice Interpolation
+### Lattice Interpolation
 
 Observation 2:
 
@@ -321,9 +321,11 @@ $$
 
 ---
 
-## Mutual Advection of φ and π
+### Mutual Advection of $\phi$ and $\pi$
 
 For mutual advection with centered derivatives:
+
+<div class="medmath">
 
 $$
 \dot\phi = - \frac{1}{\rho} \pi^T_{\mu} \nabla^c_{\mu} \phi
@@ -333,17 +335,23 @@ $$
 \dot\pi^T_\mu = - \left(\nabla_\mu^c\phi\right) \left(\nabla_\nu^c\nabla_\nu^c\phi\right)
 $$
 
-- This update conserves the Hamiltonian:
+</div>
+
+- This update conserves the Hamiltonian (kinetic part) exactly:
+
+<div class="medmath">
 
 $$
-{\cal H}_\pi+{\cal H}^c_{\partial\phi} = \sum_{\vec{x}} \left[ \frac{1}{2\rho} \pi^T_\mu(\vec{x})\pi^T_\mu(\vec{x}) + \frac{1}{2} \nabla^c_\mu\phi(\vec{x}) \nabla^c_\mu \phi(\vec{x}) \right]
+{\cal H}\_\pi+ {\cal H}^c\_{\partial\phi} = \sum_{\vec{x}} [ \frac{1}{2\rho} \pi^T_\mu(\vec{x})\pi^T_\mu(\vec{x}) + \frac{1}{2} \nabla^c_\mu\phi(\vec{x}) \nabla^c_\mu \phi(\vec{x}) ]
 $$
 
-- Does not exactly conserve potential energy
+</div>
+
+- However this updates does not exactly conserve potential energy
 
 ---
 
-## Final Discretization
+### Final Spatial Discretization
 
 Summary of spatial discretization for the advection step:
 
@@ -359,20 +367,13 @@ $$
 - Ensures transversality with regard to centered derivative: $\nabla_\mu^c\pi^T_\mu(\vec{x})=0$
 - Energy is conserved up to finite lattice spacing corrections
 
-# Numerical Methods for Field Evolution
-
 ---
 
-## Third-order Runge-Kutta Method (RK3)
+### Third-order Runge-Kutta Method (RK3)
 
 ### For Advection Terms
 
-- We define a four-component field $\phi_\mu = (\phi, \vec{\pi}^T)$
 - Evolution equation: $\dot{\phi}_\mu = \mathcal{F}_\mu (\phi_\nu)$
-
----
-
-## RK3 Integration Scheme (Shu & Osher)
 
 1. First step:
    $\phi^{n+1/3}_\mu = \phi^n_\mu + \Delta t   \mathcal{F}_\mu (\phi^n_\nu)$
@@ -387,19 +388,15 @@ $$
 
 ---
 
-## Dissipative Update: Metropolis Algorithm
-
-**Key Insight**:
+### Dissipative Update: Metropolis Algorithm
 
 - Diffusive step and noise term implemented via a single Metropolis update
-- First moment → diffusive step
-- Second moment → noise term
 - Guarantees fluctuation-dissipation relations
 - Converges to equilibrium distribution: $P[\phi_\mu]\sim \exp(-\mathcal{H}[\phi_\mu]/T)$
 
 ---
 
-## Metropolis Update for Scalar Field $\phi$
+### Metropolis Update for Scalar Field $\phi$
 
 Trial update:
 
@@ -416,7 +413,7 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 ---
 
-## Metropolis Update for Momentum Density $\vec{\pi}$
+### Metropolis Update for Momentum Density $\vec{\pi}$
 
 Trial update:
 
@@ -432,47 +429,15 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 ---
 
-## Transverse Projection
-
-- After a complete sweep, project onto transverse component:
-  $\pi_\mu^T (\vec{x},t) = P^T_{\mu\nu} \pi_\nu(\vec{x})$
-- Projection carried out in Fourier space
-- Ensures $(d-1)$ fluctuating degrees of freedom for momentum density
-- Average energy per mode equals $\frac{d-1}{2}T$ rather than $\frac{d}{2}T$
-
----
-
-## Calculating Energy Changes for Metropolis Steps
-
-For scalar field change at point $\vec{x}$:
-
-$\Delta \mathcal{H}_\phi(\vec{x}) = d[({\phi^{\text{trial}}(\vec{x})})^2 - ({\phi(\vec{x})})^2] - (\phi^{\text{trial}}(\vec{x}) - \phi(\vec{x}))\sum_{\mu=1}^d [\phi(\vec{x}+\hat{\mu}) + \phi(\vec{x}-\hat{\mu})] + \frac{1}{2}m^2[({\phi^{\text{trial}}(\vec{x})})^2 - ({\phi(\vec{x})})^2] + \frac{1}{4}\lambda[({\phi^{\text{trial}}(\vec{x})})^4 - ({\phi(\vec{x})})^4]$
-
----
-
-## Energy Changes (continued)
-
-For conserving update (transferring charge $q_\mu$ from $\vec{x}+\hat{\mu}$ to $\vec{x}$):
-
-$\Delta \mathcal{H}_\phi (\vec{x}, \vec{x}+\hat \mu) = \Delta \mathcal{H}_\phi(\vec{x}) + \Delta \mathcal{H}_\phi (\vec{x}+\hat \mu) + (q_\mu)^2$
-
-For momentum transfer:
-
-$\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\mu)}(\pi^T_\nu(\vec{x})-\pi^T_\nu(\vec{x}+\hat{\mu})) + (r_{\nu}^{(\mu)})^2]$
-
----
-
 ## Implementation Notes
 
 - Metropolis updates performed on a checkerboard pattern
 - Timestep for dissipative update can differ from Runge-Kutta timestep
 - Transverse projection operator applied after complete lattice sweep
 
-# Theoretical Expectations for Model H
-
 ---
 
-## Static Behavior
+### Theoretical Expectations for Model H: statics
 
 - Governed by partition function: $Z = \int D\phi  D\vec\pi^T  \exp\left(-\frac{\mathcal{H}}{T}\right)$
 - No coupling between scalar field $\phi$ and momentum density $\vec\pi^T$ in Hamiltonian
@@ -482,7 +447,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Critical Behavior of Scalar Field
+### Critical Behavior of Scalar Field
 
 - Scalar field $\phi$ in Ising model universality class
 - At critical point ($m^2 = m_c^2$), two-point function:
@@ -495,7 +460,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Susceptibility
+### Susceptibility
 
 - Defined as integral of two-point function:
   $\chi = \int d^dx  \langle \phi(0,\vec{0})\phi(0,\vec{x})\rangle$
@@ -508,7 +473,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Dynamics: Momentum Density
+### Dynamics: Momentum Density
 
 - Transverse momentum correlation function:
   $C_{ij}(t,\vec{k}) = \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$
@@ -519,7 +484,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Renormalization of Viscosity
+### Renormalization of Viscosity
 
 - Self-advection of momentum density (shear modes) renormalizes viscosity:
   $\eta_R = \eta + \frac{7}{60\pi^2} \frac{\rho T\Lambda}{\eta}$
@@ -532,7 +497,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Additional Renormalization Effects
+### Additional Renormalization Effects
 
 - Coupling to scalar field also renormalizes viscosity:
   $\eta_{R} = \eta + \frac{1}{160\pi} \frac{T\xi^0}{\Gamma}$
@@ -545,7 +510,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Order Parameter Dynamics
+### Order Parameter Dynamics
 
 - Order parameter correlation function:
   $C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle$
@@ -556,7 +521,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Kawasaki Function
+### Kawasaki Function
 
 - $K(x) = \frac{3}{4}[1+x^2+(x^3-x^{-1})\tan^{-1}(x)]$
 - Asymptotic behavior:
@@ -569,7 +534,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Dynamical Critical Exponent
+### Dynamical Critical Exponent
 
 - Model B: $z = 4$ (mean field), $z = 4-\eta$ (with fluctuations)
 - Model H (with momentum coupling): $z \simeq 3$
@@ -579,7 +544,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Critical Viscosity
+### Critical Viscosity
 
 - Viscosity diverges at critical point:
   $\eta_R = \eta[1 + \frac{8}{15\pi^2}\log(\xi/\xi_0)]$
@@ -589,7 +554,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-## Physical Argument for z ≈ 3
+### Physical Argument for z ≈ 3
 
 1. Define renormalized conductivity $\Gamma_R$ by $\Gamma_k = \Gamma_R\chi^{-1}k^2$ (for $k\xi < 1$)
 2. Critical scaling: $\Gamma_R \sim \xi^{x_\Gamma}$ (Kawasaki: $x_\Gamma = 1$)
@@ -605,59 +570,68 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ---
 
-<img src="img/Ctime2d.pdf.png" alt="Ctime2d.pdf.png">
+### 2D Dynamical Critical Exponent
+
+- Time dependence of the correlation function
+  $$
+  C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle,  \quad k \to 0
+  $$
+
+<img src="img/Ctime2d.pdf.png" alt="Ctime2d.pdf.png" width="50%">
 
 ---
 
-<img src="img/Ctime.pdf.png" alt="Ctime.pdf.png">
+### 3D Dynamical Critical Exponent
+
+- Time dependence of the correlation function
+  $$
+  C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle,  \quad k \to 0
+  $$
+
+<img src="img/Ctime.pdf.png" alt="Ctime.pdf.png"  width="50%" >
 
 ---
 
-<img src="img/EffectiveViscosity.pdf.png" alt="EffectiveViscosity.pdf.png">
+---
+
+### Renormalized viscosity
+
+<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png" width="50%">
+
+- Viscosity can be extracted through the analysis of the momentum density decay
 
 ---
 
-<img src="img/Hist_model_A.pdf.png" alt="Hist_model_A.pdf.png">
+### Renormalized viscosity
+
+- Self-advection = $\phi$ field is turned off
+- Model $H_0$ = classic model H without $\pi_k \nabla_k \pi_i$ term
+
+<img src="img/EffectiveViscosity.pdf.png" alt="EffectiveViscosity.pdf.png"  width="50%"  >
+  
+---
+
+<img src="img/Hist_model_A.pdf.png" alt="Hist_model_A.pdf.png"  width="50%" >
 
 ---
 
-<img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png">
+<img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png"  width="50%">
 
 ---
 
-<img src="img/Hist_model_B.pdf.png" alt="Hist_model_B.pdf.png">
+<img src="img/Hist_model_B.pdf.png" alt="Hist_model_B.pdf.png"  width="50%" >
 
 ---
 
-<img src="img/Hist_model_B_res.pdf.png" alt="Hist_model_B_res.pdf.png">
+<img src="img/Hist_model_B_res.pdf.png" alt="Hist_model_B_res.pdf.png"  width="50%" >
 
 ---
 
-<img src="img/intersect_fit.pdf.png" alt="intersect_fit.pdf.png">
-
----
-
-<img src="img/modH_Kawasaki1_mp.pdf.png" alt="modH_Kawasaki1_mp.pdf.png">
-
----
-
-<img src="img/modH_Kawasaki2_mp.pdf.png" alt="modH_Kawasaki2_mp.pdf.png">
-
----
-
-<img src="img/modH_resp_phi_mp.pdf.png" alt="modH_resp_phi_mp.pdf.png">
-
----
-
-<img src="img/modH_resp_pi_mp.pdf.png" alt="modH_resp_pi_mp.pdf.png">
+<img src="img/intersect_fit.pdf.png" alt="intersect_fit.pdf.png"  width="50%" >
 
 ---
 
 <img src="img/StatCorr.pdf.png" alt="StatCorr.pdf.png">
-
----
-
-<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png">
 
 ---
 
