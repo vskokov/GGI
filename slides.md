@@ -12,9 +12,13 @@
 
 - Introduction
 
-  -
-  -
-  -
+- Model H: definition
+
+- Numerical scheme
+
+- Theory expectations
+
+- Numerical results
 
 - Conclusions
 
@@ -30,25 +34,67 @@ Stochastic theories near critical point:
 
 - Model A: purely relaxational theories
 
+<div class="cite">
+J. Berges, S. Schlichting, D. Sexty,  0912.3135 <br/>
+T. Schaefer, V. S., 2204.02433
+</div>
+
 - Model B: critical diffusion
+
+<div class="cite">
+D. Schweitzer, S. Schlichting, L. von Smekal, 2110.01696 <br/>
+C. Chattopadhyay, J. Ott, T. Schaefer, V. S.,  2304.07279
+</div>
 
 - ...
 
 - <span style="color:  #ff6b35;"> _Model G_ </span>: critical anti-ferromagnets
 
+<div class="cite">
+A. Florio, E. Grossi, D. Teaney, ...,  2111.03640; 2306.06887
+</div>
+
 - <span style="color:  #ff6b35;"> _Model H_ </span>: critical diffusion coupled to Navier-Stokes
+
+<div class="cite">
+ C. Chattopadhyay, J. Ott, T. Schaefer, V. S., 2403.10608 and 2411.15994
+</div>
 
 ---
 
 ### Dynamical critical exponent
 
-TODO: definition
+- Relaxation time of the slowest mode: $\tau \propto \xi^z$
 
 - $\epsilon=4-d$ expansion; $\epsilon$ is not small for physically interesting case of $d=3$
 
-- FRG: LPA and LPA' approximations currently
+  - Five-loop $\epsilon$-expansion in model A (leads to $z$=2.0236(8)):
 
-- Our choice: direct simulation of stochastic hydrodynamics
+<div class="medmath">
+$$
+z=2+0.013446 \varepsilon^2+0.011037 \varepsilon^3-0.0055791(4) \varepsilon^4+{0 . 0 1 7 7 4 ( 3 1 )} \varepsilon^5+O\left(\varepsilon^6\right)
+$$
+</div>
+<div class="cite">
+  L.  Adzhemyan et. al., 2111.04719
+</div>
+
+- Two-loop $\epsilon$-expansion in model H (leads to $z=3.071$)
+
+<div class="medmath">
+$$z=4-\frac{18 \epsilon}{19}[1-0.0196 \epsilon]$$
+</div>
+
+<div class="cite">
+  L.  Adzhemyan et. al., 1999
+</div>
+
+- FRG: currently only LPA' approximation
+
+<div class="cite">
+ Y. Chen, Y. Tan, W.-J. Fu, 2406.00679 <br/>
+ J. Roth, Y. Ye, S. Schlichting, L. von Smekal, 2409.14470
+</div>
 
 ---
 
@@ -93,91 +139,81 @@ $$
 
 ---
 
-###
+### Explicitly conservative form
 
-$$
-\partial_t\phi + \vec\nabla\cdot\vec\jmath = 0,  \hspace{1.5cm} \partial_t\pi_{T,i} + P^T_{ij}\nabla_k \Pi_{jk} = 0  .
-$$
+- Equation can be rewritten in explicitly conserving form
 
-Here the currents contain non-dissipative as well as a dissipative/stochastic parts
+<div class="medmath">
+$$
+\partial_t\phi + \vec\nabla\cdot\vec\jmath = 0,  \hspace{1.5cm} \partial_t\pi_{T,i} + P^T_{ij}\nabla_k \Pi_{jk} = 0
+$$
+</div>
 
-$$
-\jmath_i = \jmath_i^{(0)} + \jmath_i^{(1)} \hspace{1cm} \Pi_{ij} = \Pi_{ij}^{(0)} + \Pi_{ij}^{(1)} .
-$$
+- Currents have non-dissipative and dissipative/stochastic parts
 
-The currents are given by
-
+<div class="medmath">
 $$
-\jmath_i^{(0)} = \phi \frac{\delta {\cal H}}{\delta \pi^T_i} = \frac{1}{\rho},\phi \pi^T_{i} ,
-$$
-
-$$
-\jmath_i^{(1)} = -\Gamma \nabla_i \frac{\delta{\cal H}}{\delta \phi} + \Theta_i
-$$
-
-as well as
-
-$$
-\Pi_{ij}^{(0)} = \frac{1}{\rho}  \pi^T_{i}\pi^T_{j} + (\nabla_i\phi)(\nabla_j\phi )
+\jmath_i = \jmath_i^{(0)} + \jmath_i^{(1)},  \hspace{1cm} \Pi_{ij} = \Pi_{ij}^{(0)} + \Pi_{ij}^{(1)} .
 $$
 
 $$
-\Pi_{ij}^{(1)} = -\eta \left[ \nabla_i \frac{\delta{\cal H}}{\delta\pi^T_{j}} +\nabla_j \frac{\delta{\cal H}}{\delta\pi^T_{i}} \right]
+\jmath_i^{(0)} = \phi \frac{\delta {\cal H}}{\delta \pi^T_i} = \frac{1}{\rho}\phi \pi^T_{i}, \quad \jmath_i^{(1)} = -\Gamma \nabla_i \frac{\delta{\cal H}}{\delta \phi} + \Theta_i
+$$
+
+$$
+\Pi_{ij}^{(0)} = \frac{1}{\rho}  \pi^T_{i}\pi^T_{j} + (\nabla_i\phi)(\nabla_j\phi ), \quad  \Pi_{ij}^{(1)} = -\eta \left[ \nabla_i \frac{\delta{\cal H}}{\delta\pi^T_{j}} +\nabla_j \frac{\delta{\cal H}}{\delta\pi^T_{i}} \right]
 \Lambda_{ij}
 $$
 
-where $\Theta_i$ and $\Lambda_{ij}$ are delta correlated noise fields with variance $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lambda_{ij}\Lambda_{kl}\rangle \sim 2\eta T (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})$, respectively. This form of the equation makes the physical meaning of the mode coupling between $\partial_t\vec\pi$ and $\nabla_i\phi$ more transparent. It corresponds to including the stress of $\phi$ in the stress tensor $\Pi_{ij}$.
+with $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lambda_{ij}\Lambda_{kl}\rangle \sim 2\eta T (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})$.
+
+</div>
 
 ---
 
 ### Lattice Discretization of Field Theory
 
-In order to study the theory numerically we discretize the fields $\phi(\vec{x})$ and $\vec\pi(\vec{x})$ on a $d$-dimensional lattice $\vec{x}=\vec{n}a$ with $n_i=1,\ldots,N$. We can define forward and backward derivatives in the direction $\mu=1,2,3$ as
+- Fields $\phi(\vec{x})$ and $\vec\pi(\vec{x})$ are discritized on a $d$-dimensional lattice $\vec{x}=\vec{n}a$ with $n_i=1,\ldots,N$.
 
+- Forward and backward derivatives in the direction $\mu=1,2,3$
+
+<div class="medmath">
 $$
 \nabla^R_\mu\phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x}+\hat{\mu}a)-\phi(\vec{x}) ],
 \hspace{0.5cm} \nabla^L_\mu \phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x})-\phi(\vec{x}-\hat{\mu}a) ].
 $$
+</div>
 
-Note that in the actual implementation we set $a = 1$. The Laplacian is defined as $\nabla^2=\nabla^L_\mu\nabla^R_\mu = \nabla^R_\mu\nabla^L_\mu$ where summation over $\mu$ is implied. Note that this lattice derivative satisfies integration by parts
+- The Laplacian is defined as $\nabla^2=\nabla^L_\mu\nabla^R_\mu = \nabla^R_\mu\nabla^L_\mu$
 
-$$
-\sum_{\vec{x}} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu\phi(\vec{x}) = -\sum_{\vec{x}} \phi(\vec{x}) \nabla^2\phi(\vec{x}),
-$$
+- This lattice derivative satisfies
+  $
+\sum_{\vec{x}} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu\phi(\vec{x}) = -\sum_{\vec{x}} \phi(\vec{x}) \nabla^2\phi(\vec{x})
+$
 
-where we have assumed that the fields satisfy periodic boundary conditions.
+- Operators $\nabla_\mu^{R,L}$ are not anti-hermitian,
+  but their sum is
+  $
+\nabla_\mu^c=\frac{1}{2}\left(\nabla^L_\mu+\nabla^R_\mu\right)
+$
 
-Also note that the operators $\nabla_\mu^{R,L}$ are not anti-hermitian,
-
-$$
-\left(\nabla^R_\mu\right)^\dagger=-\nabla^L_\mu\, , \hspace{0.7cm} \left(\nabla^L_\mu\right)^\dagger=-\nabla^R_\mu\, ,
-$$
-
-but their average, the symmetric (centered) difference operator is
-
-$$
-\nabla_\mu^c=\frac{1}{2}\left(\nabla^L_\mu+\nabla^R_\mu\right) \, , \hspace{0.7cm} (\nabla_\mu^c)^\dagger = -\nabla_\mu^c \, .
-$$
-
-We can define a centered Laplacian
+- Centered Laplacian
 
 $$
-\left(\nabla_\nu^c\right)^2\phi(\vec{x}) = \frac{1}{4} \sum_\nu\, \Big\{ \phi(\vec{x} + 2 \hat{\nu}) \phi(\vec{x} - 2 \hat{\nu}) - 2 \phi(\vec{x}) \Big\},
+\left(\nabla_\nu^c\right)^2\phi(\vec{x}) = \frac{1}{4} \sum_\nu \Big\\{ \phi(\vec{x} + 2 \hat{\nu}) \phi(\vec{x} - 2 \hat{\nu}) - 2 \phi(\vec{x}) \Big\\}
 $$
-
-We are now in a position to specify the lattice discretized Hamiltonian as
-
-$$
-{\cal H}  = \sum_{\vec{x}} \left[ \frac{1}{2\rho} \pi^T_\mu(\vec{x})\pi^T_\mu(\vec{x}) + \frac{1}{2} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu \phi(\vec{x}) \frac{1}{2} m^2 \phi^2(\vec{x}) \frac{1}{4} \lambda  \phi^4(\vec{x}) \right] \, ,
-$$
-
-where again the sum over $\mu$ is implied. Below, we will also consider a Hamiltonian where the gradient term is defined in terms of centered derivatives
-
-# Conservation Laws in Numerical Field Theory
 
 ---
 
-## Motivation
+### Discritized Hamiltonian
+
+$$
+{\cal H}  = \sum_{\vec{x}} \left[ \frac{1}{2\rho} \pi^T_\mu(\vec{x})\pi^T_\mu(\vec{x}) + \frac{1}{2} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu \phi(\vec{x})  +  \frac{1}{2} m^2 \phi^2(\vec{x}) + \frac{1}{4} \lambda  \phi^4(\vec{x}) \right]
+$$
+
+---
+
+### Conservation Laws in Numerical Field Theory
 
 - When solving equations of motion numerically, we want to maintain conservation laws and symmetries
 - In continuum theory, the equations can be written in forms that manifestly conserve momentum and charge
@@ -185,37 +221,42 @@ where again the sum over $\mu$ is implied. Below, we will also consider a Hamilt
 
 ---
 
-## Continuum Advection Terms
+### Continuum Advection Terms
 
-The advection term for $(\phi, \vec{\pi}^T)$ in the continuum:
-
-$$
-\dot{\phi} = - \nabla_i \left( \phi \, \frac{\pi^T_i}{\rho} \right) = - \frac{\pi^T_i}{\rho} \, \nabla_i \phi
-$$
+- The advection term for $(\phi, \vec{\pi}^T)$ in the continuum:
 
 $$
-\dot{\pi}^T_{i} = - P^T_{ij} \left[ \nabla_k \left( \frac{1}{\rho} \, \pi^T_{k} \pi^T_{j} \right) + \nabla_j \phi \nabla^2 \phi \right]
+\dot{\phi} = - \nabla_i \left( \phi  \frac{\pi^T_i}{\rho} \right) = - \frac{\pi^T_i}{\rho}  \nabla_i \phi
+$$
+
+$$
+\dot{\pi}^T_{i} = - P^T_{ij} \left[ \nabla_k \left( \frac{1}{\rho}  \pi^T_{k} \pi^T_{j} \right) + \nabla_j \phi \nabla^2 \phi \right]
 $$
 
 ---
 
-## Energy Conservation in Continuum
+### Energy Conservation in Continuum
 
-Time derivative of the Hamiltonian:
-
-$$
-\dot{{\cal H}} = \int d^3x \, \left[ - \dot{\phi} \, \nabla^2 \phi + \frac{1}{\rho} \, \pi^T_{i} \dot{\pi}^T_{i} + V'(\phi) \, \dot{\phi} \right]
-$$
-
-After substitution:
+- Time derivative of the Hamiltonian:
 
 $$
-\dot{{\cal H}} = \int d^3x \, \left[ (\nabla^2\phi) \, \frac{\pi^T_i}{\rho} \nabla_i \phi - \frac{\pi^T_i}{\rho} \left( \frac{\pi^T_j}{\rho} \nabla_j \right) \pi^T_i - (\nabla^2\phi) \, \frac{\pi^T_i}{\rho} \nabla_i \phi - \nabla_i \left( V(\phi) \frac{\pi^T_i}{\rho} \right) \right]
+\dot{{\cal H}} = \int d^3x  \left[ - \dot{\phi}   \nabla^2 \phi + \frac{1}{\rho}   \pi^T_{i} \dot{\pi}^T_{i} + V'(\phi)   \dot{\phi} \right]
 $$
 
-- First and third terms cancel
-- Second term becomes a divergence
-- Energy is conserved (boundary terms ignored)
+- Using the eqs. of motion
+
+  $$
+  \dot{{\cal H}} = \int d^3x   \left[ (\nabla^2\phi)   \frac{\pi^T_i}{\rho} \nabla_i \phi - \frac{\pi^T_i}{\rho} \left( \frac{\pi^T_j}{\rho} \nabla_j \right) \pi^T_i - (\nabla^2\phi)   \frac{\pi^T_i}{\rho} \nabla_i \phi - \nabla_i \left( V(\phi) \frac{\pi^T_i}{\rho} \right) \right]
+  $$
+
+- First and third terms cancel; second term becomes a divergence
+
+$$
+   { \color{Rhodamine}
+    \pi^T_i \left( \pi^T_j \nabla_j \right) \pi_i^T = \nabla_i  \left( \pi_i^T \frac{\pi^T_j\pi^T_j}{2 } \right)}
+$$
+
+- Energy is conserved
 
 ---
 
@@ -232,44 +273,49 @@ $$
 From Morinishi et al., the "skew-symmetric" form:
 
 $$
-\left.\nabla_\mu \left(\frac{1}{\rho} \pi^T_{\mu} \pi^T_{\nu} \right) \right|_{\it skew} \equiv \frac{1}{2} \, \nabla_\mu \left( \frac{1}{\rho} \pi^T_{\mu} \pi^T_{\nu} \right) + \frac{1}{2} \, \frac{\pi^T_{\mu}}{\rho} \, \nabla_\mu \pi^T_{\nu}
+\nabla_\mu \left(\frac{1}{\rho} \pi^T_{\mu} \pi^T_{\nu} \right)  \equiv \frac{1}{2}   \nabla_\mu ( \frac{1}{\rho} \pi^T_{\mu} \pi^T_{\nu} ) + \frac{1}{2}   \frac{\pi^T_{\mu}}{\rho}   \nabla_\mu \pi^T_{\nu}
 $$
 
-- Conserves kinetic energy independent of continuity relation $\nabla_k\pi^T_k=0$
+- Observation 1: Conserves kinetic energy independent of $\nabla_k\pi^T_k=0$
 
 ---
 
 ## Lattice Interpolation
 
-Special definitions for the lattice:
+Observation 2:
+
+<div class="medmath">
 
 $$
-\overline{\phi}^{\,\hat\mu} \equiv \frac{1}{2}\big[\phi\left(\vec{x} + \hat\mu/2 \right) + \psi\left(\vec{x} - \hat\mu/2 \right) \big]
+\frac{1}{2}  \frac{d}{dt}  \left(\pi^T_{\nu}\pi^T_\nu\right) =  \left.\pi^T_{\nu} \nabla_\mu \left(\frac{1}{\rho} \pi^T_{\mu} \pi^T_{\nu} \right) \right|\_{\it skew} = \frac{1}{2}  \nabla_\mu^{1/2} \Big[(\overline{\pi^T_{\mu}})^{\hat{\mu}} (\widetilde{\pi^T_{\nu}\pi^T_{\nu}})^{\hat{\mu}}\Big]
+$$
+
+</div>
+
+with special definition of derivatives on the lattice:
+
+<div class="medmath">
+$$
+\overline{\phi}^{ \hat\mu} \equiv \frac{1}{2}\big[\phi\left(\vec{x} + \hat\mu/2 \right) + \psi\left(\vec{x} - \hat\mu/2 \right) \big]
 $$
 
 $$
-(\widetilde{\phi \, \psi})^{\hat\mu} \equiv \frac{1}{2}\big[\phi\left(\vec{x} + \hat\mu/2 \right) \psi\left(\vec{x} - \hat\mu/2 \right) + \phi\left(\vec{x} - \hat\mu/2 \right) \psi\left(\vec{x} + \hat\mu/2 \right)\big]
+(\widetilde{\phi   \psi})^{\hat\mu} \equiv \frac{1}{2}\big[\phi\left(\vec{x} + \hat\mu/2 \right) \psi\left(\vec{x} - \hat\mu/2 \right) + \phi\left(\vec{x} - \hat\mu/2 \right) \psi\left(\vec{x} + \hat\mu/2 \right)\big]
 $$
 
 $$
 \nabla^{1/2}_\mu \phi(x) = \frac{1}{2} \big[\phi(x+\hat{\mu}/2) - \phi(x - \hat{\mu}/2) \big]
 $$
 
----
+</div>
 
-## Product Rule on Lattice
+- These definitions preserve the product rule:
 
-With these definitions, we recover the product rule:
-
+<div class="medmath">
 $$
-\nabla^{1/2}_\mu \left( \widetilde{\phi \, \psi} \right)^{\hat{\mu}} = \left(\nabla^c_{\mu} \phi\right)\psi + \phi \, \left(\nabla^c_\mu \psi\right)
+\nabla^{1/2}\_\mu ( \widetilde{\phi\psi} )^{\hat{\mu}} = (\nabla^c_{\mu} \phi)\psi + \phi  (\nabla^c_\mu \psi )
 $$
-
-This allows us to show:
-
-$$
-\frac{1}{2}\, \frac{d}{dt}\, \left(\pi^T_{\nu}\pi^T_\nu\right) = \frac{1}{2}\, \nabla_\mu^{1/2} \Big[(\overline{\pi^T_{\mu}})^{\hat{\mu}} (\widetilde{\pi^T_{\nu}\pi^T_{\nu}})^{\hat{\mu}}\Big]
-$$
+</div>
 
 - Ensures the advection step conserves kinetic energy
 
@@ -280,7 +326,7 @@ $$
 For mutual advection with centered derivatives:
 
 $$
-\dot\phi = - \frac{1}{\rho}\,\pi^T_{\mu} \nabla^c_{\mu} \phi\,
+\dot\phi = - \frac{1}{\rho} \pi^T_{\mu} \nabla^c_{\mu} \phi
 $$
 
 $$
@@ -302,11 +348,11 @@ $$
 Summary of spatial discretization for the advection step:
 
 $$
-\dot{\phi} = - \frac{1}{\rho}\, \pi^T_{\mu} \, \nabla^c_{\mu} \phi
+\dot{\phi} = - \frac{1}{\rho}  \pi^T_{\mu}   \nabla^c_{\mu} \phi
 $$
 
 $$
-\dot{\pi}^T_{\mu} = - \left[ \frac{1}{2} \nabla^c_{\nu} \left( \frac{1}{\rho} \pi^T_\nu \pi^T_\mu \right) + \frac{1}{2\rho} \pi^T_\nu \, \nabla^c_{\nu} \pi^T_\mu + \left(\nabla^c_\mu \phi\right) \left(\nabla^c_\nu\nabla^c_\nu\phi\right) \right]
+\dot{\pi}^T_{\mu} = - \left[ \frac{1}{2} \nabla^c_{\nu} \left( \frac{1}{\rho} \pi^T_\nu \pi^T_\mu \right) + \frac{1}{2\rho} \pi^T_\nu   \nabla^c_{\nu} \pi^T_\mu + \left(\nabla^c_\mu \phi\right) \left(\nabla^c_\nu\nabla^c_\nu\phi\right) \right]
 $$
 
 - After each discrete time step, apply transverse projection
@@ -329,13 +375,13 @@ $$
 ## RK3 Integration Scheme (Shu & Osher)
 
 1. First step:
-   $\phi^{n+1/3}_\mu = \phi^n_\mu + \Delta t \, \mathcal{F}_\mu (\phi^n_\nu)$
+   $\phi^{n+1/3}_\mu = \phi^n_\mu + \Delta t   \mathcal{F}_\mu (\phi^n_\nu)$
 
 2. Second step:
-   $\phi^{n+2/3}_\mu = \frac{3}{4} \, \phi^n_\mu + \frac{1}{4} \, \phi^{n+1/3}_\mu + \frac{\Delta t}{4} \, \mathcal{F}_\mu(\phi^{n+1/3}_\nu)$
+   $\phi^{n+2/3}_\mu = \frac{3}{4}   \phi^n_\mu + \frac{1}{4}   \phi^{n+1/3}_\mu + \frac{\Delta t}{4}   \mathcal{F}_\mu(\phi^{n+1/3}_\nu)$
 
 3. Third step:
-   $\phi^{n+1}_\mu = \frac{1}{3} \, \phi^{n}_\mu + \frac{2}{3} \, \phi^{n+2/3}_\mu + \frac{2}{3} \, \Delta t \, \mathcal{F}_\mu(\phi^{n+2/3}_\nu)$
+   $\phi^{n+1}_\mu = \frac{1}{3}   \phi^{n}_\mu + \frac{2}{3}   \phi^{n+2/3}_\mu + \frac{2}{3}   \Delta t   \mathcal{F}_\mu(\phi^{n+2/3}_\nu)$
 
 - Transverse projector applied after each substep
 
@@ -359,7 +405,7 @@ Trial update:
 
 - $\phi^{\text{trial}}(\vec{x},t+\Delta t) = \phi(\vec{x},t) + q_\mu$
 - $\phi^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \phi(\vec{x}+\hat{\mu},t) - q_\mu$
-- $q_\mu = \sqrt{2\Gamma T(\Delta t)}\, \xi$
+- $q_\mu = \sqrt{2\Gamma T(\Delta t)}  \xi$
 
 Where:
 
@@ -376,7 +422,7 @@ Trial update:
 
 - $\pi_\nu^{\text{trial}}(\vec{x},t+\Delta t) = \pi_\nu(\vec{x},t) + r_{\nu}^{(\mu)}$
 - $\pi_\nu^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \pi_\nu(\vec{x}+\hat{\mu},t) - r_{\nu}^{(\mu)}$
-- $r_{\nu}^{(\mu)} = \sqrt{2\eta T (\Delta t)}\, \zeta_{\nu}^{(\mu)}$
+- $r_{\nu}^{(\mu)} = \sqrt{2\eta T (\Delta t)}  \zeta_{\nu}^{(\mu)}$
 
 Where:
 
@@ -428,10 +474,10 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 ## Static Behavior
 
-- Governed by partition function: $Z = \int D\phi\, D\vec\pi^T\, \exp\left(-\frac{\mathcal{H}}{T}\right)$
+- Governed by partition function: $Z = \int D\phi  D\vec\pi^T  \exp\left(-\frac{\mathcal{H}}{T}\right)$
 - No coupling between scalar field $\phi$ and momentum density $\vec\pi^T$ in Hamiltonian
 - Momentum density correlation:
-  $\langle \pi^T_i(0,\vec{x})\pi^T_j(0,\vec{x}^{\,\prime})\rangle = T\rho\, P^T_{ij}\delta^3(\vec{x}-\vec{x}^{\,\prime})$
+  $\langle \pi^T_i(0,\vec{x})\pi^T_j(0,\vec{x}^{ \prime})\rangle = T\rho  P^T_{ij}\delta^3(\vec{x}-\vec{x}^{ \prime})$
 - Spectral density independent of $\vec{k}$ (classical equidistribution)
 
 ---
@@ -440,7 +486,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 
 - Scalar field $\phi$ in Ising model universality class
 - At critical point ($m^2 = m_c^2$), two-point function:
-  $\langle \phi(0,\vec{x})\phi(0,\vec{x}^{\,\prime})\rangle \sim |\vec{x}-\vec{x}^{\,\prime}|^{-d+2-\eta^*}$
+  $\langle \phi(0,\vec{x})\phi(0,\vec{x}^{ \prime})\rangle \sim |\vec{x}-\vec{x}^{ \prime}|^{-d+2-\eta^*}$
 
   where $\eta^* \simeq 0.0363$ in 3D
 
@@ -452,7 +498,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 ## Susceptibility
 
 - Defined as integral of two-point function:
-  $\chi = \int d^dx\, \langle \phi(0,\vec{0})\phi(0,\vec{x})\rangle$
+  $\chi = \int d^dx  \langle \phi(0,\vec{0})\phi(0,\vec{x})\rangle$
 - Critical scaling: $\chi \sim |m^2-m_c^2|^{-\gamma}$ with $\gamma=\nu(2-\eta)$
 
 - Small value of $\eta^*$ means susceptibility close to mean field prediction $\chi\sim\xi^2$
@@ -469,7 +515,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 - Transversality implies $C_{ij}(t,\vec{k})= (\delta_{ij}-\hat{k}_i\hat{k}_j) C_\pi(t,k)$
 
 - In linearized hydrodynamics (shear mode):
-  $C_\pi(t,k) = \rho T\, \exp\left(-(\eta/\rho)k^2t\right)$
+  $C_\pi(t,k) = \rho T  \exp\left(-(\eta/\rho)k^2t\right)$
 
 ---
 
@@ -481,7 +527,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
   where $\Lambda \simeq \pi/a$ is momentum-space cutoff
 
 - Minimum renormalized viscosity:
-  $\left.\eta_R\right|_{\text{min}} = \sqrt{\frac{7}{15\pi}}\, \sqrt{\frac{\rho T}{a}}$
+  $\left.\eta_R\right|_{\text{min}} = \sqrt{\frac{7}{15\pi}}  \sqrt{\frac{\rho T}{a}}$
 - In units where $T=a=1$: $\eta_R|_{\text{min}} \simeq 0.39\sqrt{\rho}$
 
 ---
@@ -504,7 +550,7 @@ $\Delta \mathcal{H}_\pi (\vec{x}, \vec{x}+\hat \mu) = \frac{1}{\rho}[r_{\nu}^{(\
 - Order parameter correlation function:
   $C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle$
 - Wave-number dependent relaxation rate:
-  $\Gamma_k = \frac{\Gamma}{\xi^4}(k\xi)^2(1+(k\xi)^2) + \frac{T}{6\pi\eta_R\xi^3}\, K(k\xi)$
+  $\Gamma_k = \frac{\Gamma}{\xi^4}(k\xi)^2(1+(k\xi)^2) + \frac{T}{6\pi\eta_R\xi^3}  K(k\xi)$
 
   where $K(x)$ is the Kawasaki function
 
