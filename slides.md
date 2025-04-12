@@ -429,7 +429,7 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 ---
 
-## Implementation Notes
+### Implementation Notes
 
 - Metropolis updates performed on a checkerboard pattern
 - Timestep for dissipative update can differ from Runge-Kutta timestep
@@ -554,18 +554,6 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 ---
 
-### Physical Argument for z ≈ 3
-
-1. Define renormalized conductivity $\Gamma_R$ by $\Gamma_k = \Gamma_R\chi^{-1}k^2$ (for $k\xi < 1$)
-2. Critical scaling: $\Gamma_R \sim \xi^{x_\Gamma}$ (Kawasaki: $x_\Gamma = 1$)
-3. Balance of diffusion and convection in external field gives:
-   $x_\Gamma + x_\eta = 4-d-\eta^*$
-4. For small $x_\eta$ and $\eta^*$ in 3D: $x_\Gamma \simeq 1$
-5. Matching relaxation rates: $z = 4-x_\Gamma-\eta$
-6. Result: $z = d+x_\eta \simeq d = 3$ for small $x_\eta$
-
----
-
 <img src="img/binder_reweight.pdf.png" alt="binder_reweight.pdf.png">
 
 ---
@@ -596,9 +584,11 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 ### Renormalized viscosity
 
-<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png" width="50%">
-
 - Viscosity can be extracted through the analysis of the momentum density decay
+
+$C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$ with $k \to 0 $
+
+<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png" width="50%">
 
 ---
 
@@ -654,6 +644,19 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 -
 - -
   -
-- ***
 
-      - $$
+---
+
+# Backup
+
+---
+
+### Physical Argument for z ≈ 3
+
+1. Define renormalized conductivity $\Gamma_R$ by $\Gamma_k = \Gamma_R\chi^{-1}k^2$ (for $k\xi < 1$)
+2. Critical scaling: $\Gamma_R \sim \xi^{x_\Gamma}$ (Kawasaki: $x_\Gamma = 1$)
+3. Balance of diffusion and convection in external field gives:
+   $x_\Gamma + x_\eta = 4-d-\eta^*$
+4. For small $x_\eta$ and $\eta^*$ in 3D: $x_\Gamma \simeq 1$
+5. Matching relaxation rates: $z = 4-x_\Gamma-\eta$
+6. Result: $z = d+x_\eta \simeq d = 3$ for small $x_\eta$
