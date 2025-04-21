@@ -238,7 +238,7 @@ with $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lam
 
 <div class="colorized-list">
 
-- The goal is to discretize the equation on with uniform lattice spacing $\vec{x} = a \vec{n}$   
+- The goal is to discretize the equation on uniform lattice spacing $\vec{x} = a \vec{n}$   
 - When solving equations of motion numerically, it is crucial to maintain as many conservation laws and symmetries as possible 
 - In continuum theory, the equations can be written in forms that manifestly conserve momentum and order parameter 
 - <span class="att">Symplectic structure of advection term implies conservation of  Hamiltonian </span>
@@ -494,7 +494,7 @@ Similar procedure for the momentum density
 <img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png"  width="49%">
 
 - $M = \frac{1}{V} \sum_{\vec{x}} \phi(\vec{x})$
-- Negative  kurtosis (manifested by universal Binder ration) 
+- Negative  kurtosis (manifested by universal Binder ratio) 
 
 ---
 ### Model B: Probability distribution $P(M)$
