@@ -5,13 +5,15 @@
 ### North Carolina state University
 
 
-<br/>
-<br/>
-<br/>
+<img src="img/modH-3d-both.png"  width="45%"  >
+
+<div class="medmath">
 
 - Model A: T. Schaefer, V. S., 2204.02433  
 - Model B: **C. Chattopadhyay**, **J. Ott**, T. Schaefer, V. S., 2304.07279  
 - Model H: **C. Chattopadhyay**, **J. Ott**, T. Schaefer, V. S., 2403.10608 and 2411.15994
+
+</div>
 
 ---
 
