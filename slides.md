@@ -9,7 +9,9 @@
 <br/>
 <br/>
 
-- C. Chattopadhyay, **J. Ott**, T. Schaefer, V. S., 2403.10608 and 2411.15994
+- Model A: T. Schaefer, V. S., 2204.02433  
+- Model B: **C. Chattopadhyay**, **J. Ott**, T. Schaefer, V. S., 2304.07279  
+- Model H: **C. Chattopadhyay**, **J. Ott**, T. Schaefer, V. S., 2403.10608 and 2411.15994
 
 ---
 
@@ -17,7 +19,7 @@
 
 <div class="colorized-list">
 
-  - Introduction
+- Introduction
 
 - Model H: definition
 
@@ -38,7 +40,7 @@
 
 <div class="colorized-list">
 
-* The transition from hadronic matter to QGP along the temperature axis in the QCD phase diagram is a smooth crossover.
+* Transition from hadronic matter to QGP along the temperature axis in the QCD phase diagram is a smooth crossover.
 
 * As baryon doping increases, this crossover may transform into a first-order phase transition at a critical endpoint.
 
@@ -53,11 +55,6 @@
 
 
 
-
----
-
-### Fluctuations
-
 ---
 ### Universality classes: statics vs dynamics 
 
@@ -65,6 +62,7 @@
 
 <div class="colorized-list">
 
+* Near-equilibrium  dynamics is universal 
 
 * Unlike static universality classes, dynamical universality classes are governed by additional factors beyond dimensionality, locality, and symmetries.
 
@@ -176,11 +174,11 @@ $$z=4-\frac{18 \epsilon}{19}[1-0.0196 \epsilon]$$
 <div class="smallmath">
 \begin{align}
 \partial_t\phi &=   \Gamma \nabla^2 \left(\frac{\delta{\cal H}}{\delta \phi}\right) - \left(\nabla_i\phi\right) \frac{\delta{\cal H}}{\delta \pi_i^T}+  \zeta\\ 
-\partial_t \pi^T_i &= \eta \nabla^2 \left(\frac{\delta{\cal H}}{\delta \pi^T_i}\right) + P^T_{ij} \left[\left(\nabla_j\phi\right) \frac{\delta{\cal H}} {\delta\phi} \right] - P^T_{ij} \left[ \nabla_k\left( \pi^{T}_j \frac{\delta{\cal H}}{\delta \pi^T_k}\right) \right] + \xi_i .
+\partial_t \pi^T_i &= \eta \nabla^2 \left(\frac{\delta{\cal H}}{\delta \pi^T_i}\right) + P^T_{ij} \left[\left(\nabla_j\phi\right) \frac{\delta{\cal H}} {\delta\phi} \right] -{\color{ProcessBlue}  P^T_{ij}  \left[ \nabla_k\left( \pi^{T}_j \frac{\delta{\cal H}}{\delta \pi^T_k}\right) \right] }  + \xi_i .
 \end{align}
 </div>
 
-- $\Gamma$ and $\eta$ are thermal conductivity and shear viscosity
+- Hohenberg \& Halperin: model H without <span class="attcomp"> $\vec{\pi}$ self coupling</span> = Model H0 in our notation
 
 - The effective Hamiltonian defines statics of the model
 <div class="smallmath">
@@ -214,17 +212,16 @@ $$
 $$
 </div>
 
-- Currents have non-dissipative and dissipative/stochastic parts
+- Currents have <span class="att"> non-dissipative</span> and <span class="attcomp">dissipative/stochastic</span> parts
 <div class="medmath">
 $$
-\jmath_i = \jmath_i^{(0)} + \jmath_i^{(1)},  \hspace{1cm} \Pi_{ij} = \Pi_{ij}^{(0)} + \Pi_{ij}^{(1)} .
+\jmath_i = {\color{Orange} \jmath_i^{(0)} } + {\color{ProcessBlue}\jmath_i^{(1)}},  \hspace{1cm} \Pi_{ij} = {\color{Orange} \Pi_{ij}^{(0)} } + {\color{ProcessBlue} \Pi_{ij}^{(1)} } .
 $$
 $$
-\jmath_i^{(0)} = \phi \frac{\delta {\cal H}}{\delta \pi^T_i} = \frac{1}{\rho}\phi \pi^T_{i}, \quad \jmath_i^{(1)} = -\Gamma \nabla_i \frac{\delta{\cal H}}{\delta \phi} + \Theta_i
+    {\color{Orange} \jmath_i^{(0)} = \phi \frac{\delta {\cal H}}{\delta \pi^T_i} = \frac{1}{\rho}\phi \pi^T_{i}}, \quad { \color{ProcessBlue} \jmath_i^{(1)} = -\Gamma \nabla_i \frac{\delta{\cal H}}{\delta \phi} + \Theta_i } 
 $$
 $$
-\Pi_{ij}^{(0)} = \frac{1}{\rho}  \pi^T_{i}\pi^T_{j} + (\nabla_i\phi)(\nabla_j\phi ), \quad  \Pi_{ij}^{(1)} = -\eta \left[ \nabla_i \frac{\delta{\cal H}}{\delta\pi^T_{j}} +\nabla_j \frac{\delta{\cal H}}{\delta\pi^T_{i}} \right]
-\Lambda_{ij}
+     {\color{Orange} \Pi_{ij}^{(0)} = \frac{1}{\rho}  \pi^T_{i}\pi^T_{j} + (\nabla_i\phi)(\nabla_j\phi )}, \quad      {\color{ProcessBlue}  \Pi_{ij}^{(1)} = -\eta \left[ \nabla_i \frac{\delta{\cal H}}{\delta\pi^T_{j}} +\nabla_j \frac{\delta{\cal H}}{\delta\pi^T_{i}} \right] + \Lambda_{ij} } 
 $$
 with $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lambda_{ij}\Lambda_{kl}\rangle \sim 2\eta T (\delta_{ik}\delta_{jl}+\delta_{il}\delta_{jk})$.
 
@@ -234,49 +231,15 @@ with $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lam
 
 ---
 
-### Lattice Discretization
-
-<div class="colorized-list">
-
-- Fields $\phi(\vec{x})$ and $\vec\pi(\vec{x})$ are discritized on a $d$-dimensional lattice with step size $a=1$ 
-
-- Forward and backward derivatives in the direction $\mu=1,2,3$
-<div class="medmath">
-$$
-\nabla^R_\mu\phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x}+\hat{\mu}a)-\phi(\vec{x}) ],
-\hspace{0.5cm} \nabla^L_\mu \phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x})-\phi(\vec{x}-\hat{\mu}a) ].
-$$
-</div>
-
-- The Laplacian is defined as $\nabla^2=\nabla^L_\mu\nabla^R_\mu = \nabla^R_\mu\nabla^L_\mu$
-
-- This lattice derivative satisfies
-  $
-\sum_{\vec{x}} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu\phi(\vec{x}) = -\sum_{\vec{x}} \phi(\vec{x}) \nabla^2\phi(\vec{x})
-$
-
-- Operators $\nabla_\mu^{R,L}$ are not anti-hermitian,
-  but their sum is
-  $
-\nabla_\mu^c=\frac{1}{2}\left(\nabla^L_\mu+\nabla^R_\mu\right)
-$
-
-- Centered Laplacian
-$
-\left(\nabla_\nu^c\right)^2\phi(\vec{x}) = \frac{1}{4} \sum_\nu \Big\\{ \phi(\vec{x} + 2 \hat{\nu}) + \phi(\vec{x} - 2 \hat{\nu}) - 2 \phi(\vec{x}) \Big\\}
-$
-</div>
-
----
-
 ### Conservation Laws in Numerics 
 
 
 <div class="colorized-list">
 
+- The goal is to discretize the equation on with uniform lattice spacing $\vec{x} = a \vec{n}$   
 - When solving equations of motion numerically, it is crucial to maintain as many conservation laws and symmetries as possible 
 - In continuum theory, the equations can be written in forms that manifestly conserve momentum and order parameter 
-- The symplectic structure of the advection term implies conservation of the Hamiltonian 
+- <span class="att">Symplectic structure of advection term implies conservation of  Hamiltonian </span>
 
 </div>
 
@@ -286,6 +249,7 @@ $
 
 <div class="colorized-list">
 
+- Consider simplified theory: advection only ($\Gamma =0$ and $\eta=0$) 
 - The advection term for $(\phi, \vec{\pi}^T)$ in the continuum:
 \begin{align}
 \dot{\phi} &= - \nabla_i \left( \phi  \frac{\pi^T_i}{\rho} \right) = - \frac{\pi^T_i}{\rho}  \nabla_i \phi \\\\
@@ -300,9 +264,11 @@ $
 <div class="colorized-list">
 
   - Time derivative of the Hamiltonian:
+<div class="medmath">
 $$
 \dot{{\cal H}} = \int d^3x  \left[ - \dot{\phi}   \nabla^2 \phi + \frac{1}{\rho}   \pi^T_{i} \dot{\pi}^T_{i} + V'(\phi)   \dot{\phi} \right]
 $$
+</div>
 
 - Using the eqs. of motion
 <div class="medmath">
@@ -333,6 +299,7 @@ $$
 - Need special discretization to maintain conservation laws
 </div>
 
+
 ---
 
 ### $\pi$ Self-advection Only: Skew-Symmetric Form
@@ -354,7 +321,8 @@ $$
 $$
 </div>
 
-- <span class="att"> Ensures the advection step conserves kinetic energy </span>
+- <span class="att"> Ensures the advection step conserves kinetic energy ${\cal H}  = \int d^dx \frac{1}{2\rho} ( \pi_i^T)^2 $
+ </span>
 
 </div>
 
@@ -438,10 +406,18 @@ Y. Gao et. al., arXiv:1806.05282 [math.PR] </br>
 
 Trial update:
 
+
+
+<div class="box-container top-aligned">
+  <div data-id="box1" class="box blue-box"> +q ⇇ </div>
+  <div data-id="box2" class="box red-box"> ⇇ -q </div>
+</div>
+
 <div class="colorized-list">
 
-- $\phi^{\text{trial}}(\vec{x},t+\Delta t) = \phi(\vec{x},t) + q_\mu$
-- $\phi^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \phi(\vec{x}+\hat{\mu},t) - q_\mu$
+
+- ${\color{Orange} \phi^{\text{trial}}(\vec{x},t+\Delta t) = \phi(\vec{x},t) + q_\mu } $
+- ${\color{ProcessBlue} \phi^{\text{trial}}(\vec{x}+\hat\mu,t+\Delta t) = \phi(\vec{x}+\hat{\mu},t) - q_\mu} $
 - $q_\mu = \sqrt{2\Gamma T(\Delta t)}  \xi$
 </div>
 
@@ -515,7 +491,8 @@ Similar procedure for the momentum density
 <img src="img/Hist_model_A.pdf.png" alt="Hist_model_A.pdf.png"  width="47.2%" >
 <img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png"  width="49%">
 
-- Negative  kurtosis 
+- $M = \frac{1}{V} \sum_{\vec{x}} \phi(\vec{x})$
+- Negative  kurtosis (manifested by universal Binder ration) 
 
 ---
 ### Model B: Probability distribution $P(M)$
@@ -523,6 +500,7 @@ Similar procedure for the momentum density
 <img src="img/Hist_model_B.pdf.png" alt="Hist_model_B.pdf.png"  width="47.2%" >
 <img src="img/Hist_model_B_res.pdf.png" alt="Hist_model_B_res.pdf.png"  width="49%" >
 
+- $M = \frac{2}{V}\sum_{\vec{x}\in V_{1/2}} \phi(\vec{x})$
 - Positive/near zero kurtosis 
 
 
@@ -630,7 +608,7 @@ $C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{
 ---
 
 ### Dynamic Critical Exponent as a function of  $\eta_R$  
-<img src="img/zefftc_R.pdf.png" alt="zefftc_R.pdf.png">
+<img src="img/zefftc_R.pdf.png" alt="zefftc_R.pdf.png"  width="59%">
 
 
 - Our result: $z=3.013±0.058 $ vs two loop $\varepsilon$-expansion $z ≃ 3.0712$  
@@ -639,9 +617,25 @@ $C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{
 
 ### Conclusions
 
--
-- -
-  -
+- Stable numeric scheme with exact conservation of kinetic energy 
+
+- Renormalization of viscosity: minimum viscosity for self-advection beyond one loop 
+
+- First non-perturbative calculation of dynamic critical exponent in model H
+<div class="colorized-list">
+
+  - $z_{d=3} = 3.013\pm 0.058$ 
+  - $z_{d=2} = 2.11\pm 0.015$ (see 2411.15994)
+</div>
+
+- Outlook: 
+<div class="colorized-list">
+
+  - Detailed calculation of transport coefficients  
+  - More detailed framework: longitudinal mode, bulk viscosity, renormalization of the equation of state   
+  - Non-trivial and relativistic background flow
+</div>
+
 
 ---
 
@@ -690,5 +684,40 @@ $C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{
 
 <img src="img/zefftc2d.pdf.png" alt="zefftc2d.pdf.png">
 
+
+---
+
+### Lattice Discretization
+
+<div class="colorized-list">
+
+- Fields $\phi(\vec{x})$ and $\vec\pi(\vec{x})$ are discretized on a $d$-dimensional lattice with step size $a=1$ 
+
+- Forward and backward derivatives in the direction $\mu=1,2,3$
+<div class="medmath">
+$$
+\nabla^R_\mu\phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x}+\hat{\mu}a)-\phi(\vec{x}) ],
+\hspace{0.5cm} \nabla^L_\mu \phi(\vec{x}) = \frac{1}{a} [\phi(\vec{x})-\phi(\vec{x}-\hat{\mu}a) ].
+$$
+</div>
+
+- The Laplacian is defined as $\nabla^2=\nabla^L_\mu\nabla^R_\mu = \nabla^R_\mu\nabla^L_\mu$
+
+- This lattice derivative satisfies
+  $
+\sum_{\vec{x}} \nabla^R_\mu\phi(\vec{x}) \nabla^R_\mu\phi(\vec{x}) = -\sum_{\vec{x}} \phi(\vec{x}) \nabla^2\phi(\vec{x})
+$
+
+- Operators $\nabla_\mu^{R,L}$ are not anti-hermitian,
+  but their sum is
+  $
+\nabla_\mu^c=\frac{1}{2}\left(\nabla^L_\mu+\nabla^R_\mu\right)
+$
+
+- Centered Laplacian
+$
+\left(\nabla_\nu^c\right)^2\phi(\vec{x}) = \frac{1}{4} \sum_\nu \Big\\{ \phi(\vec{x} + 2 \hat{\nu}) + \phi(\vec{x} - 2 \hat{\nu}) - 2 \phi(\vec{x}) \Big\\}
+$
+</div>
 
 
