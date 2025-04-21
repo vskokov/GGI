@@ -251,7 +251,7 @@ with $\langle\Theta_i\Theta_j\rangle \sim 2\Gamma T\delta_{ij}$ and $\langle\Lam
 
 <div class="colorized-list">
 
-- Consider simplified theory: advection only ($\Gamma =0$ and $\eta=0$) 
+- Consider simplified theory: advection only $(\Gamma =0$ and $\eta=0)$
 - The advection term for $(\phi, \vec{\pi}^T)$ in the continuum:
 \begin{align}
 \dot{\phi} &= - \nabla_i \left( \phi  \frac{\pi^T_i}{\rho} \right) = - \frac{\pi^T_i}{\rho}  \nabla_i \phi \\\\
