@@ -442,6 +442,68 @@ Accept with probability $\min(1,e^{-\Delta\mathcal{H}/T})$
 
 Similar procedure for the momentum density 
 
+
+
+
+---
+# Numeric results: statics 
+
+
+---
+### Tuning to critical point 
+
+- Adjust $m^2$ of the order parameter to get to critical point 
+- Non-conserved order parameter: Binder cumulants
+
+- Example in 2d:
+
+<img src="img/binder_reweight.pdf.png" alt="binder_reweight.pdf.png"  width="50%"  >
+
+- How to make sure conservation does not shift critical point? 
+
+---
+
+### Model A: Probability distribution $P(M)$
+
+
+<img src="img/Hist_model_A.pdf.png" alt="Hist_model_A.pdf.png"  width="47.2%" >
+<img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png"  width="49%">
+
+- $M = \frac{1}{V} \sum_{\vec{x}} \phi(\vec{x})$
+- Negative  kurtosis (manifested by universal Binder ratio) 
+
+---
+### Model B: Probability distribution $P(M)$
+
+<img src="img/Hist_model_B.pdf.png" alt="Hist_model_B.pdf.png"  width="47.2%" >
+<img src="img/Hist_model_B_res.pdf.png" alt="Hist_model_B_res.pdf.png"  width="49%" >
+
+- $M = \frac{2}{V}\sum_{\vec{x}\in V_{1/2}} \phi(\vec{x})$
+- Positive/near zero kurtosis 
+
+
+---
+
+# Numeric results: dynamics 
+
+
+---
+
+### Renormalized viscosity
+
+
+
+- Viscosity can be extracted through the analysis of the momentum density decay
+$C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$ with $k \to 0 $
+
+- Linear diffusion: $C_{\pi} \propto \exp(- \eta k^2 t)$
+
+- Renormalized viscosity $\eta_R  = - \frac{1}{k^2} \frac{d \ln C_\pi}{dt}$  
+
+<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png" width="50%">
+
+
+
 ---
 
 ### Renormalization of Viscosity: self-advection
@@ -482,36 +544,14 @@ Similar procedure for the momentum density
 
 
 ---
-### Tuning to critical point 
 
-- Adjust $m^2$ of the order parameter to get to critical point 
-- Non-conserved order parameter: Binder cumulants
+### Renormalized viscosity
 
-- Example in 2d:
+- Self-advection = $\phi$ field is turned off
+- Model $H_0$ = classic model H without self-advection term  $\pi_k \nabla_k \pi_i$ 
 
-<img src="img/binder_reweight.pdf.png" alt="binder_reweight.pdf.png"  width="50%"  >
-
-- How to make sure conservation does not shift critical point? 
-
----
-
-### Model A: Probability distribution $P(M)$
-
-
-<img src="img/Hist_model_A.pdf.png" alt="Hist_model_A.pdf.png"  width="47.2%" >
-<img src="img/Hist_model_A_res.pdf.png" alt="Hist_model_A_res.pdf.png"  width="49%">
-
-- $M = \frac{1}{V} \sum_{\vec{x}} \phi(\vec{x})$
-- Negative  kurtosis (manifested by universal Binder ratio) 
-
----
-### Model B: Probability distribution $P(M)$
-
-<img src="img/Hist_model_B.pdf.png" alt="Hist_model_B.pdf.png"  width="47.2%" >
-<img src="img/Hist_model_B_res.pdf.png" alt="Hist_model_B_res.pdf.png"  width="49%" >
-
-- $M = \frac{2}{V}\sum_{\vec{x}\in V_{1/2}} \phi(\vec{x})$
-- Positive/near zero kurtosis 
+<img src="img/EffectiveViscosity.pdf.png" alt="EffectiveViscosity.pdf.png"  width="50%"  >
+  
 
 
 ---
@@ -523,7 +563,7 @@ Similar procedure for the momentum density
 
 - Order parameter correlation function:
   $C_\phi(t,\vec{k}) = \langle \phi(0,\vec{k})\phi(t,-\vec{k})\rangle$
-- Wave-number dependent ralexation rate: $C_\phi \propto \exp(-\Gamma_k t )$ 
+- Wave-number dependent relaxation rate: $C_\phi \propto \exp(-\Gamma_k t )$ 
 
 
 
@@ -534,7 +574,7 @@ Similar procedure for the momentum density
 
 </div>
 
----
+--
 
 ### Critical Viscosity
 
@@ -547,37 +587,6 @@ Similar procedure for the momentum density
 - For weak viscosity divergence, Kawasaki approximation remains approximately self-consistent
 
 </div>
-
-
----
-
-# Numerical results 
-
----
-
-### Renormalized viscosity
-
-
-
-- Viscosity can be extracted through the analysis of the momentum density decay
-$C_{\pi}(t,\vec{k}) =  (\delta_{ij}-\hat{k}_i\hat{k}_j)  \langle \pi_i^T(0,\vec{k})\pi_j^T(t,-\vec{k})\rangle$ with $k \to 0 $
-
-- Linear diffusion: $C_{\pi} \propto \exp(- \eta k^2 t)$
-
-- Renormalized viscosity $\eta_R  = - \frac{1}{k^2} \frac{d \ln C_\pi}{dt}$  
-
-<img src="img/ViscExt.pdf.png" alt="ViscExt.pdf.png" width="50%">
-
----
-
-### Renormalized viscosity
-
-- Self-advection = $\phi$ field is turned off
-- Model $H_0$ = classic model H without self-advection term  $\pi_k \nabla_k \pi_i$ 
-
-<img src="img/EffectiveViscosity.pdf.png" alt="EffectiveViscosity.pdf.png"  width="50%"  >
-  
-
 
 
 ---
