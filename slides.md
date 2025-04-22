@@ -404,8 +404,8 @@ $$
 - Converges to equilibrium distribution: $P[\phi_\mu]\sim \exp(-\mathcal{H}[\phi_\mu]/T)$
 </div>
 
-<br class="cite">
-  G.  Moore, hep-ph/9810313 </br>
+<div class="cite">
+  G.  Moore, hep-ph/9810313 </div>
   Y. Gao et. al., arXiv:1806.05282 [math.PR] </br>
   A. Florio, E. Grossi, A. Soloviev, and D. Teaney, arXiv:2111.03640 
 </div>
