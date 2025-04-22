@@ -134,6 +134,8 @@ A. Florio, E. Grossi, A. Soloviev, D. Teaney,  ...,  2111.03640; 2306.06887; 250
 </div>
 
 
+<!--  The novel feature of model H compared to purely relaxational or diffusive theories is the presence of “mode couplings” or “Poisson-brackets”. These terms describe advective interactions that conserve the hydrodynamic Hamiltonian, but lead to non-linear mode couplings between shear waves and the diffusive evolution of the order parameter.
+-->
 
 ---
 
@@ -402,8 +404,9 @@ $$
 - Converges to equilibrium distribution: $P[\phi_\mu]\sim \exp(-\mathcal{H}[\phi_\mu]/T)$
 </div>
 
-<div class="cite">
-Y. Gao et. al., arXiv:1806.05282 [math.PR] </br>
+<br class="cite">
+  G.  Moore, hep-ph/9810313 </br>
+  Y. Gao et. al., arXiv:1806.05282 [math.PR] </br>
   A. Florio, E. Grossi, A. Soloviev, and D. Teaney, arXiv:2111.03640 
 </div>
 
