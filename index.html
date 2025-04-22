@@ -47,6 +47,7 @@
   }
 
   .cite {
+  margin: 0px auto;
   color: #aaaaaa;
   text-align: right;
   font-size: 40%;
@@ -64,10 +65,11 @@
   }
 
   .note {
+  margin: 0px auto;
   color: #999999;
   font-style: italic;
   font-weight: 100;
-  text-align: right;
+  text-align: left;
   font-size: 50%;
   }
   .smallmath {
@@ -139,6 +141,25 @@
   background-color: #00B0F0;
 }
 
+.zigzag-divider {
+  height: 5px;
+  width: 90%;
+  margin: 20px auto;
+  background: linear-gradient(45deg, transparent 33.333%, #333 33.333%, #333 66.667%, transparent 66.667%),
+              linear-gradient(-45deg, transparent 33.333%, #333 33.333%, #333 66.667%, transparent 66.667%);
+  background-size: 20px 30px;
+  background-position: 0 0;
+}
+
+  .dotted-separator {
+  height: 3px;
+  width: 90%;
+  margin: 10px auto;
+  background-image: linear-gradient(to right, #777 20%, transparent 20%);
+  background-position: top;
+  background-size: 15px 3px;
+  background-repeat: repeat-x;
+}
 
   </style>
 
@@ -167,7 +188,8 @@
       hash: true,
       width: 1120,
       height: 700,
-
+      history: false,
+      progress: true,
       slideNumber: 'c/t',
       
       mathjax3: {
@@ -181,8 +203,6 @@
       // Learn about plugins: https://revealjs.com/plugins/
       plugins: [
         RevealMarkdown,
-        RevealHighlight,
-        RevealNotes,
         RevealMath.MathJax3,
       ],
     });

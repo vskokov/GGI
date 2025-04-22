@@ -55,6 +55,10 @@
 
 </div>
 
+<div class="note">
+* See Radoslaw Ryblewski's talk for a detailed introduction.   
+</div>
+
 
 
 ---
@@ -83,7 +87,6 @@
 ### Hohenberg and Halperin classification
 
 Stochastic theories near critical point:
-
 <div class="cite">
   Citations to recent literature relevant for HIC community 
 </div>
@@ -106,8 +109,12 @@ T. Schaefer, V. S., 2204.02433
 D. Schweitzer, S. Schlichting, L. von Smekal, 2110.01696 <br/>
 C. Chattopadhyay, J. Ott, T. Schaefer, V. S.,  2304.07279
 </div>
+</div>
 
-- ...
+<div class="dotted-separator"></div>
+
+<div class="colorized-list">
+
 
 - <span class="att"> **Model G** </span>: critical anti-ferromagnets/QCD near crossover 
 <div class="cite">
@@ -116,7 +123,7 @@ A. Florio, E. Grossi, A. Soloviev, D. Teaney,  ...,  2111.03640; 2306.06887; 250
 
 - <span class="att"> **Model H** </span>: critical diffusion coupled to Navier-Stokes/QCD near critical point 
 <div class="cite">
- C. Chattopadhyay, J. Ott, T. Schaefer, V. S., 2403.10608 and 2411.15994
+ C. Chattopadhyay, J. Ott, T. Schaefer, V. S., 2403.10608; 2411.15994
 </div>
 
 </div>
@@ -130,9 +137,9 @@ A. Florio, E. Grossi, A. Soloviev, D. Teaney,  ...,  2111.03640; 2306.06887; 250
 
 ---
 
-### Dynamical critical exponent, $z$
+### Dynamic critical exponent, ${\color{Orange}z}$
 
- Relaxation time of the slowest mode: $\tau \propto \xi^z$ or $\omega \propto k^z$
+ Relaxation time of the slowest mode: $\tau \propto \xi^{\color{Orange}z}$ or $\omega \propto k^{\color{Orange}z}$
 
 <div class="colorized-list">
 
@@ -193,9 +200,7 @@ $$
 <div class="smallmath">
 $$
 \langle \zeta (t, \vec{x}) \zeta (t', \vec{x}') \rangle = -2 T \Gamma \nabla^2 \delta(\vec{x}-\vec{x}')\delta(t-t')
-$$
-$$
-\langle \xi_i (t, \vec{x}) \xi_j (t', \vec{x}') \rangle = -2 T \eta P^T_{ij} \nabla^2 \delta(\vec{x}-\vec{x}')\delta(t-t')
+; \quad \langle \xi_i (t, \vec{x}) \xi_j (t', \vec{x}') \rangle = -2 T \eta P^T_{ij} \nabla^2 \delta(\vec{x}-\vec{x}')\delta(t-t')
 $$
 </div>
 </div>
